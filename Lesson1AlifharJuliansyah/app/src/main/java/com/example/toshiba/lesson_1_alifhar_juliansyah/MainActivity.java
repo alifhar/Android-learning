@@ -251,8 +251,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(text.substring(text.length()-1).matches("[0-9]"))
-                    text += ".";
+                if(text.substring(text.length()-1).matches("[0-9]")) {
+                    String[] res = text.split("[-+x/]");
+                    if (!res[res.length-1].matches(".*[.].*"))
+                        text += ".";
+                }
                 else if(text.substring(text.length()-1).matches("[-+x/]"))
                     text += "0.";
                 info.setText(text);
